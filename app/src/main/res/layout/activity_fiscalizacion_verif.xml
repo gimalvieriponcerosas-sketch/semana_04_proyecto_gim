@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paso 3: Verificaciones"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="¿Teléfono publicado en el establecimiento?" android:layout_marginTop="16dp"/>
+    <RadioGroup android:id="@+id/rgTelPub" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <RadioButton android:id="@+id/rbTelPubSi" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="SÍ"/>
+        <RadioButton android:id="@+id/rbTelPubNo" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="NO"/>
+    </RadioGroup>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="¿Teléfono registrado y actualizado en PRICE?" android:layout_marginTop="16dp"/>
+    <RadioGroup android:id="@+id/rgTelPrice" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <RadioButton android:id="@+id/rbTelPriceSi" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="SÍ"/>
+        <RadioButton android:id="@+id/rbTelPriceNo" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="NO"/>
+    </RadioGroup>
+
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="¿Horario de atención publicado?" android:layout_marginTop="16dp"/>
+    <RadioGroup android:id="@+id/rgHorario" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:orientation="horizontal">
+        <RadioButton android:id="@+id/rbHorarioSi" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="SÍ"/>
+        <RadioButton android:id="@+id/rbHorarioNo" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="NO"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginTop="32dp"
+        android:text="Siguiente Paso" />
+
+</LinearLayout>

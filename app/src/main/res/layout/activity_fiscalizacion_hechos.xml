@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paso 4: Hechos Verificados"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="16dp"/>
+        <CheckBox android:id="@+id/cbInc1" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="1. Precios no registrados en PRICE"/>
+        <EditText android:id="@+id/etHecho1" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Describa el hecho verificado"
+            android:visibility="gone"/>
+        <CheckBox android:id="@+id/cbInc2" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2. No exhibición de lista de precios" android:layout_marginTop="8dp"/>
+        <EditText android:id="@+id/etHecho2" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Describa el hecho verificado"
+            android:visibility="gone"/>
+        <CheckBox android:id="@+id/cbInc3" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:text="3. Ubicación o teléfono no actualizado"
+            android:layout_marginTop="8dp"/>
+        <EditText android:id="@+id/etHecho3" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:hint="Describa el hecho verificado"
+            android:visibility="gone"/>
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="32dp"
+            android:text="Siguiente Paso" />
+
+    </LinearLayout>
+</ScrollView>
