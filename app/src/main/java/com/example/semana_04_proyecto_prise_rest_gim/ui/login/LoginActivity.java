@@ -27,7 +27,6 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Aplicar tema guardado antes de setContentView
         SharedPreferences sharedPreferences = getSharedPreferences("ThemePrefs", MODE_PRIVATE);
         boolean isDarkMode = sharedPreferences.getBoolean("isDarkMode", false);
@@ -36,20 +35,16 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         }
-
         setContentView(R.layout.activity_login);
-
         etUsername = findViewById(R.id.etUsername);
         etPassword = findViewById(R.id.etPassword);
         btnLogin = findViewById(R.id.btnLogin);
         Button btnRegister = findViewById(R.id.btnRegister);
         progressBar = findViewById(R.id.progressBar);
         db = AppDatabase.getInstance(this);
-
         btnRegister.setOnClickListener(v -> {
             startActivity(new Intent(this, RegisterActivity.class));
         });
-
         // Pre-poblar datos iniciales (Usuarios y Establecimientos del Excel)
         Executors.newSingleThreadExecutor().execute(() -> {
             if (db.usuarioDao().getAll().isEmpty()) {
@@ -60,7 +55,6 @@ public class LoginActivity extends AppCompatActivity {
                 admin.setRol("ADMIN");
                 admin.setDni("12345678");
                 db.usuarioDao().insert(admin);
-
                 Usuario fiscal = new Usuario();
                 fiscal.setNombreUsuario("fiscalizador");
                 fiscal.setPassword("1234");
@@ -69,9 +63,12 @@ public class LoginActivity extends AppCompatActivity {
                 fiscal.setDni("46060749");
                 db.usuarioDao().insert(fiscal);
             }
-
             if (db.establecimientoDao().getAll().isEmpty()) {
-                db.establecimientoDao().insert(new Establecimiento("TRANSPORTES MC DUCK E.I.R.L.", "MZ G LOTE 10 URB LOS PORTALES", "AMARILIS", "HUANUCO", "HUANUCO", "20529000001", "062-518499", "158752", "158752-038-070122"));
+                db.establecimientoDao().insert(new Establecimiento("TRANSPORTES MC DUCK E.I.R.L.",
+                        "MZ G LOTE 10 URB LOS PORTALES", "AMARILIS",
+                        "HUANUCO", "HUANUCO", "20529000001",
+                        "062-518499", "158752",
+                        "158752-038-070122"));
                 db.establecimientoDao().insert(new Establecimiento("DELTA LOS PORTALES E.I.R.L.", "INTER REGIONAL HUANUCO - PUCALLPA N 1200", "AMARILIS", "HUANUCO", "HUANUCO", "20573000002", "062-518499", "161957", "161957-038-090823"));
                 db.establecimientoDao().insert(new Establecimiento("MAQUINARIAS & TRANSPORTES SANTA ANA", "VIA REGIONAL LIMA PUCALLPA", "PILLCO MARCA", "HUANUCO", "HUANUCO", "20492000003", "062-518499", "155946", "155946-038-221123"));
                 db.establecimientoDao().insert(new Establecimiento("TRANS GLP GRANEL SAN DIEGO E.I.R.L.", "URB LOS PORTALES MZ K LOTE 4", "AMARILIS", "HUANUCO", "HUANUCO", "20491000004", "062-518499", "123531", "123531-038-140122"));
@@ -460,32 +457,31 @@ public class LoginActivity extends AppCompatActivity {
                 db.establecimientoDao().insert(new Establecimiento("TRANS JB E.I.R.L.", "CALLE LOS CEREZOS MZ. H LT 21 URB. LOS PORTALES", "AMARILIS", "HUANUCO", "HUANUCO", "20489686270", "062-518499", "153512", "153512-643-050321"));
                 db.establecimientoDao().insert(new Establecimiento("ERNESTO AUGUSTO PALACIOS CHAMORRO", "JR 28 DE JULIO N 306", "HUANUCO", "HUANUCO", "HUANUCO", "10041000006", "062-518499", "155346", "155346-038-020823"));
                 db.establecimientoDao().insert(new Establecimiento("CARBAJAL SANCHEZ HERMANN HIDEKY", "JR. LEONCIO PRADO N 1839", "HUANUCO", "HUANUCO", "HUANUCO", "10744000007", "062-518499", "157676", "157676-038-120523"));
-                db.establecimientoDao().insert(new Establecimiento("CIPRIANO MARTEL RAUL HEINZ", "LOS PORTALES DE MITOPAMPA MZ C LOTE 20", "AMARILIS", "HUANUCO", "HUANUCO", "10225000008", "062-518499", "160381", "160381-038-020623"));
+                db.establecimientoDao().insert(new Establecimiento("CIPRIANO MARTEL RAUL HEINZ",
+                        "LOS PORTALES DE MITOPAMPA MZ C LOTE 20", "AMARILIS",
+                        "HUANUCO", "HUANUCO", "10225000008",
+                        "062-518499", "160381", "160381-038-020623"));
             }
         });
-
         btnLogin.setOnClickListener(v -> login());
     }
-
     private void login() {
         String user = etUsername.getText().toString().trim();
         String pass = etPassword.getText().toString().trim();
-
         if (user.isEmpty() || pass.isEmpty()) {
             Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show();
             return;
         }
-
         progressBar.setVisibility(View.VISIBLE);
         btnLogin.setEnabled(false);
-
         Executors.newSingleThreadExecutor().execute(() -> {
             Usuario usuario = db.usuarioDao().login(user, pass);
             runOnUiThread(() -> {
                 progressBar.setVisibility(View.GONE);
                 btnLogin.setEnabled(true);
                 if (usuario != null) {
-                    Toast.makeText(this, "Bienvenido " + usuario.getNombreCompleto(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Bienvenido " + usuario.getNombreCompleto(),
+                            Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, MenuPrincipalActivity.class);
                     intent.putExtra("userId", usuario.getId());
                     startActivity(intent);

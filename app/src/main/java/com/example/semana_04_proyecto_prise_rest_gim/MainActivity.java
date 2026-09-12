@@ -32,14 +32,16 @@ public class MainActivity extends AppCompatActivity {
 
         call.enqueue(new Callback<List<Establecimiento>>() {
             @Override
-            public void onResponse(Call<List<Establecimiento>> call, Response<List<Establecimiento>> response) {
+            public void onResponse(Call<List<Establecimiento>> call, Response<List<Establecimiento>>
+                    response) {
                 if (response.isSuccessful()) {
                     Log.d(TAG, "¡CONEXIÓN EXITOSA CON SUPABASE! Código: " + response.code());
                     if (response.body() != null) {
                         Log.d(TAG, "Establecimientos en la nube: " + response.body().size());
                     }
                 } else {
-                    Log.e(TAG, "Error de Supabase: " + response.code() + " - " + response.message());
+                    Log.e(TAG, "Error de Supabase: " + response.code() + " - " +
+                            response.message());
                 }
             }
 

@@ -5,7 +5,6 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import com.example.semana_04_proyecto_prise_rest_gim.data.model.Usuario;
 import java.util.List;
-
 @Dao
 public interface UsuarioDao {
     @Insert

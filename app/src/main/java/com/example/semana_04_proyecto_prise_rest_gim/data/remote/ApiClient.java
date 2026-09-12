@@ -11,27 +11,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
     private static final String BASE_URL = "https://qxsuiutnoagglmawgpcl.supabase.co/rest/v1/";
-    private static final String API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF4c3VpdXRub2FnZ2xtYXdncGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNzE0OTEsImV4cCI6MjA5Mzc0NzQ5MX0.2w6SZZ8M1YqqyrwiwvJG-gDr0mxs0QDozhpO_zFxVLc";
-
+    private static final String API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsIn" +
+            "JlZiI6InF4c3VpdXRub2FnZ2xtYXdncGNsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgxNzE0OTEsImV4cCI6MjA5Mzc" +
+            "0NzQ5MX0.2w6SZZ8M1YqqyrwiwvJG-gDr0mxs0QDozhpO_zFxVLc";
     private static Retrofit retrofit;
-
     public static ApiService getApiService() {
         if (retrofit == null) {
-            // Filtro para ignorar la variable 'isSynced' solo al enviar a Supabase
             Gson gson = new GsonBuilder()
                     .setExclusionStrategies(new ExclusionStrategy() {
                         @Override
                         public boolean shouldSkipField(FieldAttributes f) {
                             return f.getName().equals("isSynced");
                         }
-
                         @Override
                         public boolean shouldSkipClass(Class<?> clazz) {
                             return false;
                         }
                     })
                     .create();
-
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(chain -> {
                         Request request = chain.request().newBuilder()
@@ -43,7 +40,6 @@ public class ApiClient {
                         return chain.proceed(request);
                     })
                     .build();
-
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL)
                     .client(client)

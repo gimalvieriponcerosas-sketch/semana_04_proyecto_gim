@@ -52,7 +52,8 @@ public class RegisterActivity extends AppCompatActivity {
         Executors.newSingleThreadExecutor().execute(() -> {
             db.usuarioDao().insert(user);
             runOnUiThread(() -> {
-                Toast.makeText(this, "Usuario registrado correctamente", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Usuario registrado correctamente",
+                        Toast.LENGTH_SHORT).show();
                 finish();
             });
         });
